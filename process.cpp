@@ -7,6 +7,7 @@
 
 #include "process.h"
 #include <iostream>
+#include <stdexcept>
 #include <assert.h>
 
 #define AUTHOR_NAME "Ananta Yudica"
@@ -51,15 +52,17 @@ char Looping::running(int counter) {
 	return this->running(++counter);
 };
 
-void Looping::run(int counter) {
-	assert(counter < this->MAX_STACK);
+void Looping::run(int counter) throw (std::exception){
+	if (counter > this->MAX_STACK) {
+		throw std::overflow_error("Maximum Looping");
+	}
 	if (this->running(0) == this->EXIT) {
 		return;
 	}
 	this->run(++counter);
 };
 
-void Looping::run() {
+void Looping::run() throw(std::exception){
 	this->run(0);
 };
 

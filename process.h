@@ -5,8 +5,10 @@
  *      Author: "Ananta Yudica"
  */
 
+#include <stdexcept>
 #ifndef PROCESS_H_
 #define PROCESS_H_
+
 
 namespace process {
 /**
@@ -29,11 +31,11 @@ private:
 	static const char INTERUPT;
 	static const int MAX_STACK;
 	char running(int);
-	void run(int);
+	void run(int) throw(std::exception);
 public:
 	Looping();
 	virtual ~Looping();
-	void run();
+	void run() throw(std::exception);
 };
 
 } /* namespace process */
